@@ -1,56 +1,66 @@
 [![Build Status](https://secure.travis-ci.org/soldair/node-binarysearch.png)](https://github.com/pooyahatami/Algorithm-Sort-Counting/)
-# Algorithm-Sort-Counting
+# Algorithm-Sort-Merge
 
-## Brief about Counting Sort 
-Counting sort is a sorting technique based on keys between a specific range. It works by counting the number of objects having distinct key values (kind of hashing). Then doing some arithmetic to calculate the position of each object in the output sequence.
+## about Merge Sort 
+Merge Sort is a Divide and Conquer algorithm. It divides input array in two halves, calls itself for the two halves and then merges the two sorted halves. The merge() function is used for merging two halves. The merge(arr, l, m, r) is key process that assumes that arr[l..m] and arr[m+1..r] are sorted and merges the two sorted sub-arrays into one. 
 
 ```javascript
- * Counting sort algorithm !
+ * Merge sort algorithm ! 
  * Class	Sorting algorithm
  * Data structure	Array
- * Worst-case performance	О(n+k) comparisons, swaps
- * Best-case performance	O(n+k) comparisons, O(1) swaps
- * Average performance	О(n+k) comparisons, swaps
- * Worst-case space complexity
+ * Worst-case performance	O(n log n) 
+ * Best-case performance	O(n log n) typical, O(n) natural variant
+ * Average performance	O(n log n) 
+ * Worst-case space complexity О(n) total, O(n) auxiliary
+ *   where n is the size of the input array.
+ *   input array elements could be negative/positive and also integer or float .
+ *   Note: there are another kind of Merg sort by the name of 3-way Merge Sort . 
+ *         Merge sort involves recursively splitting the array into 2 parts, sorting and finally merging them. 
+ *         A variant of merge sort is called 3-way merge sort where instead of splitting the array into 2 parts 
+ *         we split it into 3 parts.
+ *         Merge sort recursively breaks down the arrays to subarrays of size half. Similarly, 
+ *         3-way Merge sort breaks down the arrays to subarrays of size one third.
+ *
+ * Author: Pooya Hatami
  ```
  
-Let us understand it with the help of an example.
+See following C implementation for details.
 
 ```javascript
-For simplicity, consider the data in the range 0 to 9. 
-Input data: 1, 4, 1, 2, 7, 5, 2
-  1) Take a count array to store the count of each unique object.
-  Index:     0  1  2  3  4  5  6  7  8  9
-  Count:     0  2  2  0   1  1  0  1  0  0
-
-  2) Modify the count array such that each element at each index 
-  stores the sum of previous counts. 
-  Index:     0  1  2  3  4  5  6  7  8  9
-  Count:     0  2  4  4  5  6  6  7  7  7
-
-The modified count array indicates the position of each object in 
-the output sequence.
- 
-  3) Output each object from the input sequence followed by 
-  decreasing its count by 1.
-  Process the input data: 1, 4, 1, 2, 7, 5, 2. Position of 1 is 2.
-  Put data 1 at index 2 in output. Decrease count by 1 to place 
-  next data 1 at an index 1 smaller than this index.
+MergeSort(arr[], l,  r)
+If r > l
+     1. Find the middle point to divide the array into two halves:  
+             middle m = (l+r)/2
+     2. Call mergeSort for first half:   
+             Call mergeSort(arr, l, m)
+     3. Call mergeSort for second half:
+             Call mergeSort(arr, m+1, r)
+     4. Merge the two halves sorted in step 2 and 3:
+             Call merge(arr, l, m, r)
 ```
 
 ## Ruls :
 ```js
-var rectcs = require('./node-sort-counting');
-var result = rectcs.countingSort(inputArray,rangeMax);
+var nodesort = require('./node-sort-merge');
+nodesort(inputArray, function(err,sortRef) {
+        if (err) {
+            // TODO error handeling 
+            }
+	      else {
+           var result = sortRef.mergeSort(inputArray);
+           // TODO output 
+	            }
+    });
 ```
- * Sort Array of integers .
- * Array's element shoud be integers and between 0 and rangeMax
- * Returns the Sorted Array or -1 if not found valid input.
+ * Sort Array of integers / float .
+ * Array's element could be negative and positive .
+ * Returns error mesage if not found valid input.
 
 ## example
 ```js
-var rectcs = require('./node-sort-counting');
+var nodesort = require('./node-sort-merge');
 
+var arrin00 = [20, 8 , -11, 12, 22 , 9 , 10 ];
 var arrin01 = [20, 8 , 48, 120, 220 , 390 , 1000 ];
 var arrin02 = [20, 8 , 480 , 120, 220 , 390 , 1000 ];
 var arrin03 = [1120, 800 , 480 , 120, 20 , 390 , 1000 ];
@@ -58,24 +68,44 @@ var arrin04 = ['g', 'e', 'e', 'k', 's', 'f', 'o',
                       'r', 'g', 'e', 'e', 'k', 's'];
 var arrin05 = [1, 3, 7, 25, 12, 9, 8,
                       121, 221, 10, 18, 29, 49];
+var arrin06 = [1, 3, -7, 25, 12, 9, 8,
+                      121, 221, -10, 18, 29, 49];
+var arrin07 = [1, 3, 7000000000000000000, 25, 12, 9, 8,
+                      121, 221, 100000000000000000000000000 , 18, 290000000000000000000, 49];
+var arrin08 = [1, 3, 75432, 25, 12, 9, 8,
+                      121, 221, 976562 , 18, 299999, 49];
+var arrin09 = [0.897, 0.565, 0.656, 0.1234, 0.665, 0.3434 , 0.611 , 0.621 ];
+var arrin10 = [1,342, 14,293 , 0.897, 0.565, 0.656, 0.1234, 0.665, 0.3434 , 0.611 , 0.621 ];
+var arrin11 = [5, 8 , 11, 12, 2 , 9 , 10 , 4 , 11, 10, 12, 7, 9 ];
+var arrin12 = "";
 
 
-function solveIS(arr,range) {
-    var arr_original = arr.toString() ;
-    var result = rectcs.countingSort(arr,range);
-    if (result==-1){
-    console.log("Fail attempt to sort array ["+arr_original+" ] by Insertion Sort " );
-    } else {
-    console.log("Success attempt to sort array ["+arr_original+" ] and result is : [ "
+function solveSorting(inputArray) {
+    var arr_original = inputArray.toString() ;
+    var sortedArray = inputArray;
+
+    nodesort(inputArray, function(err,sortRef) {
+        if (err) {
+	         console.log(err);
+	                }
+	      else {
+           var result = sortRef.mergeSort(inputArray);
+	         console.log("Success attempt to sort array \r\n \t ["+arr_original+" ] \r\n and result is : \r\n \t [ "
                 + result + " ]" );
-    }
-   
-   console.log("----------------------------------------------------------");     
-}
+  
+	      sortedArray = result;
+	            }
+	      console.log("----------------------------------------------------------"); 
+    });
+    
+    return sortedArray;
+};
 
-solveIS(arrin01,1000);
-solveIS(arrin05,256);
-solveIS(arrin03,1120);
+solveSorting(arrin09);
+solveSorting(arrin00);
+solveSorting(arrin10);
+solveSorting(arrin11);
+solveSorting(arrin12);
 ```
 
 
@@ -132,6 +162,11 @@ int main()
     return 0;
 }
 ```
+
+The following diagram from wikipedia shows the complete merge sort process for an example array {38, 27, 43, 3, 9, 82, 10}. If we take a closer look at the diagram, we can see that the array is recursively divided in two halves till the size becomes 1. Once the size becomes 1, the merge processes comes into action and starts merging arrays back till the complete array is merged.
+
+Merge-Sort
+
 Following is Java implementation of counting sort.
 ```java
 // Java implementation of Counting Sort
