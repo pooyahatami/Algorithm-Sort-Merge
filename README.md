@@ -1,7 +1,7 @@
 [![Build Status](https://secure.travis-ci.org/soldair/node-binarysearch.png)](https://github.com/pooyahatami/Algorithm-Sort-Counting/)
 # Algorithm-Sort-Merge
 
-## about Merge Sort 
+## About Merge Sort 
 Merge Sort is a Divide and Conquer algorithm. It divides input array in two halves, calls itself for the two halves and then merges the two sorted halves. The merge() function is used for merging two halves. The merge(arr, l, m, r) is key process that assumes that arr[l..m] and arr[m+1..r] are sorted and merges the two sorted sub-arrays into one. 
 
 ```javascript
@@ -23,26 +23,27 @@ Merge Sort is a Divide and Conquer algorithm. It divides input array in two halv
  *
  * Author: Pooya Hatami
  ```
- 
-See following C implementation for details.
 
-```javascript
-MergeSort(arr[], l,  r)
-If r > l
-     1. Find the middle point to divide the array into two halves:  
-             middle m = (l+r)/2
-     2. Call mergeSort for first half:   
-             Call mergeSort(arr, l, m)
-     3. Call mergeSort for second half:
-             Call mergeSort(arr, m+1, r)
-     4. Merge the two halves sorted in step 2 and 3:
-             Call merge(arr, l, m, r)
+## Installation
+
+If you are using a browser, you can download **node-sort-merge.js** from GitHub or just bellow hotlink to it:
+
+```js
+<script src="https://raw.githubusercontent.com/pooyahatami/Algorithm-Sort-Bucket/master/node-sort-merge.js"></script>
 ```
 
-## Ruls :
+If you are using node, you can install **node-sort-merge** with npm.
+
+```
+npm install node-sort-merge
+```
+
+## Usage :
 ```js
 var nodesort = require('./node-sort-merge');
-nodesort(inputArray, function(err,sortRef) {
+var displaymode = "No"; //"Yes";  // "Yes" for more details of algorithm progress 
+...
+nodesort(inputArray, displaymode, function(err,sortRef) {
         if (err) {
             // TODO error handeling 
             }
@@ -52,13 +53,19 @@ nodesort(inputArray, function(err,sortRef) {
 	            }
     });
 ```
+
+## Ruls :
  * Sort Array of integers / float .
  * Array's element could be negative and positive .
  * Returns error mesage if not found valid input.
+ * Turn On details of Algorithms progress useing : displaymode = "Yes"  
+ ```js
+ var displaymode = "No"; //"Yes";
+ ```
 
-## example
+## Example
 ```js
-var nodesort = require('./node-sort-merge');
+var nodesort = require('./node-sort-bucket');
 
 var arrin00 = [20, 8 , -11, 12, 22 , 9 , 10 ];
 var arrin01 = [20, 8 , 48, 120, 220 , 390 , 1000 ];
@@ -89,7 +96,7 @@ function solveSorting(inputArray) {
 	         console.log(err);
 	                }
 	      else {
-           var result = sortRef.mergeSort(inputArray);
+           var result = sortRef.bucketSort(inputArray);
 	         console.log("Success attempt to sort array \r\n \t ["+arr_original+" ] \r\n and result is : \r\n \t [ "
                 + result + " ]" );
   
@@ -108,9 +115,25 @@ solveSorting(arrin11);
 solveSorting(arrin12);
 ```
 
+
+See following C implementation for details.
+
+```javascript
+MergeSort(arr[], l,  r)
+If r > l
+     1. Find the middle point to divide the array into two halves:  
+             middle m = (l+r)/2
+     2. Call mergeSort for first half:   
+             Call mergeSort(arr, l, m)
+     3. Call mergeSort for second half:
+             Call mergeSort(arr, m+1, r)
+     4. Merge the two halves sorted in step 2 and 3:
+             Call merge(arr, l, m, r)
+```
+
 The following diagram from wikipedia shows the complete merge sort process for an example array {38, 27, 43, 3, 9, 82, 10}. If we take a closer look at the diagram, we can see that the array is recursively divided in two halves till the size becomes 1. Once the size becomes 1, the merge processes comes into action and starts merging arrays back till the complete array is merged.
 
-![Merge-Sort](https://github.com/pooyahatami/Algorithm-Sort-Merge/blob/master/img/Merge-Sort.png)
+![Merge-Sort](https://raw.githubusercontent.com/pooyahatami/Algorithm-Sort-Merge/master/img/Merge-Sort.png)
 
 Following is C implementation of counting sort.
 ```C
