@@ -1,11 +1,11 @@
 {
-  "name": "node-sort-counting",
-  "description": "Counting sort is a sorting technique based on keys between a specific range. It works by counting the number of objects having distinct key values (kind of hashing). Then doing some arithmetic to calculate the position of each object in the output sequence.",
-  "version": "1.0.2",
+  "name": "node-sort-merge",
+  "description": "Merge Sort is a Divide and Conquer algorithm. It divides input array in two halves, calls itself for the two halves and then merges the two sorted halves.",
+  "version": "1.0.1",
   "repository": {
-    "url": "https://github.com/pooyahatami/Algorithm-Sort-Counting"
+    "url": "https://github.com/pooyahatami/Algorithm-Sort-Merge"
   },
-  "main": "node-sort-counting.js",
+  "main": "node-sort-merge.js",
   "scripts": {
     "test": "test-Cases/*.js"
   },
