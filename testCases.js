@@ -49,7 +49,7 @@ function solveSorting(inputArray) {
 	         console.log(err);
 	                }
 	      else {
-           var result = sortRef.merge(inputArray);
+           var result = sortRef.mergeSort(inputArray);
 	         console.log("Success attempt to sort array \r\n \t ["+arr_original+" ] \r\n and result is : \r\n \t [ "
                 + result + " ]" );
   
