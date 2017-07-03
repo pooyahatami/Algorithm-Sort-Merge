@@ -18,7 +18,8 @@
  * Author: Pooya Hatami
  */
  
-module.exports = function(inputArray,displaymode,callback) {
+module.exports = function(inputArray,displayStatus,callback) {
+  displaymode = displayStatus;
   try {
     var code = maxsqrt(inputArray);   // code[0] : max element Code[1] : bucket size square of lenght // code[2] array lenght // code[3] min element 
     if (displaymode=="Yes") console.log("max",code[0],"lenght square",code[1],"array lenght",code[2],"min",code[3]);
