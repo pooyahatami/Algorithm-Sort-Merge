@@ -29,7 +29,7 @@ Merge Sort is a Divide and Conquer algorithm. It divides input array in two halv
 If you are using a browser, you can download **node-sort-merge.js** from GitHub or just bellow hotlink to it:
 
 ```js
-<script src="https://raw.githubusercontent.com/pooyahatami/Algorithm-Sort-Bucket/master/node-sort-merge.js"></script>
+<script src="https://raw.githubusercontent.com/pooyahatami/Algorithm-Sort-Merge/master/node-sort-merge.js"></script>
 ```
 
 If you are using node, you can install **node-sort-merge** with npm.
